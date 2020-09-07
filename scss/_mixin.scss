@@ -1,0 +1,108 @@
+/*カラーパレット*/
+
+/*font family*/
+$font1: 'Work Sans';
+$font2: 'Noto Sans JP';
+
+/*height*/
+$headernav_height: 35px;
+$header_height: 70px;
+$megamenu_height: 150px;
+
+/*path*/
+$root: '';
+
+$dt: 1921px; // デスクトップ
+$lp: 1920px; //ラップトップ
+$tab: 990px; // タブレット
+$sp: 480px;  // スマホ
+$xs: 330px;  // 極小スマホ
+
+@mixin dt {
+   @media (min-width: ($dt)) {
+      @content;
+   }
+}
+@mixin lp {
+   @media (max-width: ($lp)) {
+      @content;
+   }
+}
+@mixin tab {
+   @media (max-width: ($tab)) {
+      @content;
+   }
+}
+@mixin sp {
+   @media (max-width: ($sp)) {
+      @content;
+   }
+}
+
+@mixin xs {
+   @media (max-width: ($xs)) {
+      @content;
+   }
+}
+
+@mixin hover {
+   transition: all ease-in-out .1s;
+
+   @media screen and (min-width: $tab) {
+      &:hover {
+         opacity: .7;
+      }
+   }
+}
+
+@mixin transition {
+   transition: all ease-in-out .3s;
+}
+
+
+
+@mixin editor {
+
+   line-height: 1.4;
+   font-size: 1.5rem;
+
+   ul {
+      li {
+         margin: 0 0 2rem 3rem;
+         list-style: disc;
+      }
+   }
+
+   ol {
+      li {
+         margin: 0 0 2rem 3rem;
+         list-style-type: decimal;
+      }
+   }
+
+   strong {
+      font-weight: bold;
+   }
+
+   em {
+      font-style: italic;
+   }
+
+   a {
+      color: $mainColor;
+
+      @include underLine;
+   }
+
+   p {
+      margin: 0 0 3rem 0;
+      font-size: 1.8rem;
+      line-height: 1.8!important;
+   }
+
+   div {
+      margin: 0 0 3rem 0;
+   }
+
+
+}

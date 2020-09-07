@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+   <meta charset="UTF-8"/>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+   <meta name="viewport" content="width=device-width,initial-scale=1"/>
+   <meta name="format-detection" content="telephone=no"/>
+   <title>Zoom test</title>
+   <meta name="description" content="zoom test"/>
+   <link rel="stylesheet" href="./css/main.css" />
+   <link rel="stylesheet" href="./css/gridlex.css" />
+   <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+
+   <script type="text/javascript" src="./js/common.js"></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body id="top" onload="loadImage('preview');">
+   <header>
+      <div class="header-inner">
+      </div>
+   </header>
+
+   <main>
+      <p><canvas id="preview"></canvas></p>
+      <p>
+         <!-- name -->
+         <input type="text" id="canvas_name" value="" placeholder="Your Name">
+         <button onclick="drawName('preview', 'canvas_name');">Add Your Name</button><br /><br />
+
+         <!-- position -->
+         <input type="text" id="canvas_position" value="" placeholder="ex. Designer | idm '20">
+         <button onclick="drawPosition('preview', 'canvas_position');">Add Your Description</button><br /><br />
+
+
+         <input type="text" id="canvas_qr" value="" placeholder="Website or Email">
+         <button onclick="addQr('preview', 'canvas_qr');">Add QR code</button><br /><br />
+
+         <button onclick="downloadCanvas()">Download</button>
+         <button onclick="window.location.reload();">Reset</button>
+
+         <a id="hiddenLink" download="test.png" style="display: none;">link</a>
+
+         <!-- <p>自動でダウンロードされない場合、下図を右クリックして保存してください。</p>
+         <img id="canvasImage" src="dummy.png"> -->
+         <!-- CSSで小さめサイズに調整 -->
+
+      </p>
+
+      <style>
+
+      body {
+         font-family: 'Questrial', sans-serif;
+      }
+
+      #preview {
+         width: 100%;
+         max-width: 600px;
+      }
+
+
+      </style>
+
+      <script>
+      //キャンバスに画像を描画する
+      function loadImage(id)
+      {
+         //画像を読み込んでImageオブジェクトを作成する
+         var image = new Image();
+         image.src = './img/zoom-bg.png';
+         image.onload = (function () {
+            //画像ロードが完了してからキャンバスの準備をする
+            var canvas = document.getElementById(id);
+            var ctx = canvas.getContext('2d');
+            //キャンバスのサイズを画像サイズに合わせる
+            canvas.width = image.width;
+            canvas.height = image.height;
+            //キャンバスに画像を描画（開始位置0,0）
+            ctx.drawImage(image, 0, 0);
+         });
+      }
+
+      //キャンバスに名前を描く
+      function drawName(canvas_id, text_id)
+      {
+         var canvas = document.getElementById(canvas_id);
+         var ctx = canvas.getContext('2d');
+         var text = document.getElementById(text_id);
+         //文字のスタイルを指定
+         ctx.font = '50px sans-serif';
+         ctx.fillStyle = '#404040';
+         //文字の配置を指定（左上基準にしたければtop/leftだが、文字の中心座標を指定するのでcenter
+         ctx.textBaseline = 'top right';
+         ctx.textAlign = 'right';
+         //座標を指定して文字を描く（座標は画像の中心に）
+         var x = (canvas.width - 156);
+         var y = 140;
+         ctx.fillText(text.value, x, y);
+      }
+
+      //キャンバスにポジションを描く
+      function drawPosition(canvas_id, text_id)
+      {
+         var canvas = document.getElementById(canvas_id);
+         var ctx = canvas.getContext('2d');
+         var text = document.getElementById(text_id);
+         //文字のスタイルを指定
+         ctx.font = '30px sans-serif';
+         ctx.fillStyle = '#404040';
+         //文字の配置を指定（左上基準にしたければtop/leftだが、文字の中心座標を指定するのでcenter
+         ctx.textBaseline = 'top right';
+         ctx.textAlign = 'right';
+         //座標を指定して文字を描く（座標は画像の中心に）
+         var x = (canvas.width - 158);
+         var y = 180;
+         ctx.fillText(text.value, x, y);
+      }
+
+      //キャンバスにQRcode挿入
+      function addQr(canvas_id, qr_id)
+      {
+         var canvas = document.getElementById(canvas_id);
+         var url = $('#canvas_qr').val();
+         context = canvas.getContext('2d');
+         base_image = new Image();
+         //画像の際はこれが必要らしい
+         base_image.crossOrigin = "Anonymous";
+         base_image.src = 'https://chart.apis.google.com/chart?cht=qr&chs=300x300&choe=Shift_JIS&chl=' + url;
+         base_image.onload = function(){
+            context.drawImage(base_image, (canvas.width - 430), 200);
+         }
+      }
+
+      //ダウンロード用
+      function downloadCanvas() {
+         let canvas = document.getElementById('preview')
+         let link = document.getElementById('hiddenLink')
+         link.href = canvas.toDataURL()
+
+         //右クリック用画像出力
+         // document.getElementById('canvasImage').src = canvas.toDataURL()
+
+         link.click()
+      }
+
+      </script>
+
+
+      <footer>
+         <div class="footer-inner">
+
+         </div>
+      </footer>
+
+   </body>
+   </html>

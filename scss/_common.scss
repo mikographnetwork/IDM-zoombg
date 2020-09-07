@@ -1,0 +1,70 @@
+@import "mixin";
+
+html {
+   // font-size: 62.5%;
+   font-size: 52%;
+   @include lp {
+      font-size: 52%;
+   }
+   @include tab {
+      font-size: 48%;
+   }
+   @include sp {
+      font-size: 48%;
+   }
+   letter-spacing: .2em;
+}
+
+body {
+   font-family: 'Noto Sans JP','Work Sans', sans-serif;
+   font-size: 1.8rem;
+   overflow-x: hidden;
+   letter-spacing: .1rem;
+   line-height: 1.7;
+   /*固定ヘッダー分*/
+   // margin: #{$header_height} 0 0 0;
+}
+
+.container {
+   width: 90%;
+   margin: auto;
+   max-width: 1280px;
+   position: relative;
+   z-index: 100;
+}
+
+
+body,
+#wrapper {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+   overflow: auto;
+   overflow-x: hidden;
+}
+
+footer {
+   margin-top: auto;
+}
+
+/*===========================================*/
+/*▼これより下記 コンポーネント一覧になります。▼*/
+/*===========================================*/
+
+
+/*===========================================*/
+/*▼item用Youtube▼*/
+/*===========================================*/
+
+.youtube {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+}
+.youtube iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100% !important;
+  height: 100% !important;
+}

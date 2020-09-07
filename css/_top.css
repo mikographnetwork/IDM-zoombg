@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/*カラーパレット*/
+/*font family*/
+/*height*/
+/*path*/
+/*===========================================*/
+/*▼Top▼*/
+/*===========================================*/
+#top .video-section {
+  width: 100%;
+  margin: 0 0 3rem 0; }
+  #top .video-section .video-ttl {
+    font-size: 3rem;
+    color: #333;
+    margin: 0 0 1rem 0; }
