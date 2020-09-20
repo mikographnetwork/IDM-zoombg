@@ -124,7 +124,7 @@
       ctx.textBaseline = 'top right';
       ctx.textAlign = 'right';
       //座標を指定して文字を描く（座標は画像の中心に）
-      var x = (canvas.width - 156);
+      var x = (canvas.width - 166);
       var y = 140;
       ctx.fillText(text.value, x, y);
    }
@@ -142,7 +142,7 @@
       ctx.textBaseline = 'top right';
       ctx.textAlign = 'right';
       //座標を指定して文字を描く（座標は画像の中心に）
-      var x = (canvas.width - 158);
+      var x = (canvas.width - 167);
       var y = 180;
       ctx.fillText(text.value, x, y);
    }
@@ -158,7 +158,7 @@
       base_image.crossOrigin = "Anonymous";
       base_image.src = 'https://chart.apis.google.com/chart?cht=qr&chs=300x300&choe=Shift_JIS&chl=' + url;
       base_image.onload = function(){
-         context.drawImage(base_image, (canvas.width - 430), 200);
+         context.drawImage(base_image, (canvas.width - 425), 200);
       }
    }
 
